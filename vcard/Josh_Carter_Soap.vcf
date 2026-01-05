@@ -1,0 +1,15 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Jonesboro Soap & Bath Co//NFC vCard//EN
+N:Carter;Josh;;;
+FN:Josh Carter
+ORG:Jonesboro Soap & Bath Co
+TITLE:Founder
+TEL;TYPE=CELL,VOICE:+1-870-514-2645
+TEL;TYPE=WORK,VOICE:+1-870-393-1112
+EMAIL;TYPE=INTERNET,WORK,PREF:josh@jonesborosoap.com
+ADR;TYPE=WORK:;;2411 Race Street;Jonesboro;AR;72401;United States
+URL:https://joshualcarter.github.io#soap
+NOTE:For wholesale/partnerships and store inquiries. Book a call: https://calendly.com/joshua-l-carter
+CATEGORIES:Retail,Wholesale,Soap,Local Business
+END:VCARD
