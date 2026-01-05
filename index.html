@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Josh Carter</title>
+  <meta name="description" content="Josh Carter — Personal · Executive · Jonesboro Soap & Bath Co" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="topbar" role="banner">
+      <div class="brand">
+        <div class="avatar" aria-hidden="true">
+          <img src="assets/headshot-placeholder.svg" alt="Placeholder headshot" />
+        </div>
+        <div style="min-width:0">
+          <h1>Josh Carter</h1>
+          <p id="tagline">Operations Leader · Founder · Advisor</p>
+        </div>
+      </div>
+
+      <nav class="modebar" aria-label="Profile mode">
+        <button class="tab" data-mode="executive" aria-selected="true">Executive</button>
+        <button class="tab" data-mode="personal" aria-selected="false">Personal</button>
+        <button class="tab" data-mode="soap" aria-selected="false">Jonesboro Soap</button>
+      </nav>
+    </header>
+
+    <main class="grid" role="main">
+      <section class="card" id="primary">
+        <h2 id="headline">Executive Operations Leader</h2>
+        <p id="blurb">
+          I help organizations scale operations, improve margins, and build resilient systems.
+          Experience across military, Fortune 500, founder-led, and high-tempo environments.
+        </p>
+
+        <div class="actions" id="actions"></div>
+
+        <div class="small" id="note"></div>
+      </section>
+
+      <aside class="card" id="secondary">
+        <h2>Quick details</h2>
+        <p><span class="badge" id="modeBadge">EXEC</span> <span id="modeSummary">For recruiters, operators, and professional networking.</span></p>
+
+        <div class="hr"></div>
+
+        <div class="list" id="chips"></div>
+
+        <div class="hr"></div>
+
+        <p class="small">
+          Tip: Save this link. I keep the NFC card pointed here so it never needs reprogramming.
+        </p>
+      </aside>
+    </main>
+
+    <div class="footer">
+      © <span id="year"></span> Josh Carter · Built on GitHub Pages
+    </div>
+  </div>
+
+<script>
+  // ========= EDIT THESE LINKS LATER (no-code) =========
+  const LINKS = {
+    calendly: "https://calendly.com/joshua-l-carter", // your provided path
+    linkedin: "https://www.linkedin.com/in/joshualcarter/",
+    personalEmail: "mailto:joshua.l.carter@gmail.com",
+    soapEmail: "mailto:josh@jonesborosoap.com",
+    vcard: "vcard/Josh_Carter.vcf",
+    resume: "docs/Josh_Carter_Resume.pdf",
+    execResume: "docs/Josh_Carter_Executive_Resume.pdf",
+    // Replace these soap links when ready:
+    soapWebsite: "#",
+    wholesale: "#",
+    reviews: "#",
+    storeInfo: "#"
+  };
+
+  // ========= MODE CONTENT =========
+  const MODES = {
+    executive: {
+      badge: "EXEC",
+      tagline: "Operations Leader · Founder · Advisor",
+      headline: "Executive Operations Leader",
+      blurb: "I help organizations scale operations, improve margins, and build resilient systems. Experience across military, Fortune 500, founder-led, and high-tempo environments.",
+      summary: "For recruiters, operators, and professional networking.",
+      chips: ["P&L + Margin", "Supply Chain", "Systems + Process", "Turnarounds", "Scaling"],
+      note: "Preferred for professional introductions.",
+      actions: [
+        {title:"Executive Resume", sub:"PDF", href: LINKS.execResume},
+        {title:"Schedule a Call", sub:"Calendly", href: LINKS.calendly},
+        {title:"LinkedIn", sub:"Connect", href: LINKS.linkedin},
+        {title:"Email", sub:"Personal", href: LINKS.personalEmail}
+      ]
+    },
+    personal: {
+      badge: "PERS",
+      tagline: "Husband · Dad · Builder",
+      headline: "Personal",
+      blurb: "Quick ways to connect. Save my contact, view my resume, or schedule a call.",
+      summary: "For casual networking and day-to-day connections.",
+      chips: ["Save Contact", "Resume", "Schedule", "LinkedIn"],
+      note: "Best when you just met me and want to save my info.",
+      actions: [
+        {title:"Save My Contact", sub:"vCard (.vcf)", href: LINKS.vcard},
+        {title:"Resume", sub:"PDF", href: LINKS.resume},
+        {title:"Schedule a Call", sub:"Calendly", href: LINKS.calendly},
+        {title:"LinkedIn", sub:"Connect", href: LINKS.linkedin}
+      ]
+    },
+    soap: {
+      badge: "SOAP",
+      tagline: "Jonesboro Soap & Bath Co",
+      headline: "Jonesboro Soap & Bath Co",
+      blurb: "For wholesale partners, community connections, and business inquiries. Quick access to the website, reviews, and scheduling.",
+      summary: "For business partnerships, wholesale, and community.",
+      chips: ["Wholesale", "Reviews", "Website", "Book a Call"],
+      note: "Email for soap-business topics: josh@jonesborosoap.com",
+      actions: [
+        {title:"Visit Website", sub:"Jonesboro Soap", href: LINKS.soapWebsite},
+        {title:"Wholesale Inquiry", sub:"Start here", href: LINKS.wholesale},
+        {title:"Leave a Review", sub:"Google", href: LINKS.reviews},
+        {title:"Book a Call", sub:"Calendly", href: LINKS.calendly},
+        {title:"Email", sub:"Soap Store", href: LINKS.soapEmail},
+        {title:"Store Info", sub:"Location + hours", href: LINKS.storeInfo}
+      ]
+    }
+  };
+
+  function render(modeKey){
+    const mode = MODES[modeKey];
+    document.getElementById("modeBadge").textContent = mode.badge;
+    document.getElementById("modeSummary").textContent = mode.summary;
+    document.getElementById("tagline").textContent = mode.tagline;
+    document.getElementById("headline").textContent = mode.headline;
+    document.getElementById("blurb").textContent = mode.blurb;
+    document.getElementById("note").textContent = mode.note;
+
+    const actions = document.getElementById("actions");
+    actions.innerHTML = "";
+    mode.actions.forEach(a => {
+      const el = document.createElement("a");
+      el.className = "btn";
+      el.href = a.href;
+      el.target = (a.href.startsWith("http") ? "_blank" : "_self");
+      el.rel = "noopener";
+      el.innerHTML = `<div><strong>${a.title}</strong><div><span>${a.sub}</span></div></div><div aria-hidden="true">→</div>`;
+      actions.appendChild(el);
+    });
+
+    const chips = document.getElementById("chips");
+    chips.innerHTML = "";
+    mode.chips.forEach(c => {
+      const pill = document.createElement("div");
+      pill.className = "pill";
+      pill.textContent = c;
+      chips.appendChild(pill);
+    });
+
+    // Update URL hash for sharing
+    history.replaceState(null, "", "#" + modeKey);
+  }
+
+  // Tabs
+  const tabs = Array.from(document.querySelectorAll(".tab"));
+  tabs.forEach(t => {
+    t.addEventListener("click", () => {
+      tabs.forEach(x => x.setAttribute("aria-selected", "false"));
+      t.setAttribute("aria-selected", "true");
+      render(t.dataset.mode);
+    });
+  });
+
+  // Default mode: executive, or by hash
+  const initial = (location.hash || "#executive").replace("#","");
+  const initialMode = MODES[initial] ? initial : "executive";
+  tabs.forEach(x => x.setAttribute("aria-selected", x.dataset.mode === initialMode ? "true" : "false"));
+  render(initialMode);
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
